@@ -1,14 +1,59 @@
 from bank import Bank
 from account import Account
+from time import sleep
+import random
 
 print("\n\t-----Welcome to Pocket Vari Bank-----\n")
 bank = Bank("Pocket Vari")
 
 def logged_in_as_user():
-    print(f"Welcome {user.name} to Pocket Vari Bank. ")
+    print(f"Welcome {user.name} to Pocket Vari Bank. Your Account number is, {user.account_no}.")
+    while True:
+        print("________________________________________")
+        print("| Press 1 for Check Balance.           |")
+        print("| Press 2 for Deposit Money.           |")
+        print("| Press 3 for Withdraw Money.          |")
+        print("| Press 4 for Take Loan.               |")
+        print("| Press 5 for Transaction History.     |")
+        print("| Press 6 for Logout.                  |")
+        print("|______________________________________|")
+        
+        choice = int(input("Enter your choice : "))
+        
+        if choice == 1:
+            user.show_balance()
+        elif choice == 2:
+            amount = int(input("Enter the amount you want to deposit : "))
+            user.deposit(amount, bank)
+        elif choice == 3:
+            amount = int(input("Enter the amount you want to withdraw : "))
+            user.withdraw(amount, bank)
+        elif choice == 4:
+            amount = int(input("Enter the amount you want to take loan : "))
+            user.take_loan(amount, bank)
+        elif choice == 5:
+            user.show_transaction_history()
+        elif choice == 6:
+            print("Logging out...")
+            sleep(random.randint(2, 3))
+            break
+        else:
+            print("Invalid Choice.")
 
 def logged_in_as_admin():
-    pass
+    print(f"Welcome {user.name} to Pocket Vari Bank. Your Administrative Account number is, {user.account_no}.")
+    while True:
+        print("_________________________________________")
+        print("| Press 1 for Create an user account.   |")
+        print("| Press 2 for Delete an user account.   |")
+        print("| Press 3 for Show all users.           |")
+        print("| Press 4 for Show total bank balance.  |")
+        print("| Press 5 for Show total loan amount.   |")
+        print("| Press 6 for Turn on loan.             |")
+        print("| Press 7 for Turn off loan.            |")
+        print("| Press 8 for Declare Bankrupt.         |")
+        print("| Press 9 for Logout.                   |")
+        print("|_______________________________________|")
 
 while True:
     op = input("Register/Login (r/l) : ")
@@ -21,11 +66,11 @@ while True:
         
         if user_type == 'u':
             user = Account(name, email, phone, password, "user")
-            print(f"Welcome {name} to Pocket Vari Bank. Your Account number is, {user.account_no}")
+            print(f"Welcome {name} to Pocket Vari Bank. Your Account number is, {user.account_no}.")
             bank.account_list.append(user)
         elif user_type == 'a':
             user = Account(name, email, phone, password, "admin")
-            print(f"Welcome {name} to Pocket Vari Bank. Your Administrative Account number is, {user.account_no}")
+            print(f"Welcome {name} to Pocket Vari Bank. Your Administrative Account number is, {user.account_no}.")
             bank.account_list.append(user)
         else:
             print("Wrong Input! Try again.")
@@ -40,8 +85,12 @@ while True:
             if user.name == name:
                 if user.password == password:
                     if user_type == 'a':
+                        print("Processing...")
+                        sleep(random.randint(3, 6))
                         logged_in_as_admin()
                     else:
+                        print("Please wait...")
+                        sleep(random.randint(3, 6))
                         logged_in_as_user()
                 else:
                     print("Sorry, Password didn't match. Try again.")

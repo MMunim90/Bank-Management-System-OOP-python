@@ -24,7 +24,7 @@ class Account:
         print(f"Current balance is = {self.total_balance} taka")
         self.transaction_history.append(f"Deposited {amount} taka.")
     
-    def withdraw():
+    def withdraw(self, amount, bank):
         pass
     
     def show_balance(self):
@@ -33,7 +33,7 @@ class Account:
     def show_transaction_history():
         pass
         
-    def take_loan():
+    def take_loan(self, amount, bank):
         pass
     
     def delete_account(self):
