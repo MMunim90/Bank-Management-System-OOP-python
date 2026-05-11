@@ -1,6 +1,6 @@
 import random
 from bank import Bank
-
+from datetime import datetime
 class Account:
     def __init__(self, name, email, phone, password, user_type):
         self.name = name
@@ -19,13 +19,22 @@ class Account:
     
     def deposit(self, amount, bank):
         self.total_balance += amount
+        bank = Bank("Pocket Vari")
         bank.total_balance += amount
         print(f"Deposit {amount} taka Successfully!!!")
-        print(f"Current balance is = {self.total_balance} taka")
-        self.transaction_history.append(f"Deposited {amount} taka.")
+        print(f"Your current balance is = {self.total_balance} taka")
+        self.transaction_history.append(f"Deposited {amount} taka at {datetime.now()}")
     
     def withdraw(self, amount, bank):
-        pass
+        if self.total_balance >= amount:
+            self.total_balance -= amount
+            bank = Bank("Pocket Vari")
+            bank.total_balance -= amount
+            print(f"Withdraw {amount} taka Successfully!!!")
+            print(f"Your current balance is = {self.total_balance} taka")
+            self.transaction_history.append(f"Withdrawal {amount} taka at {datetime.now()}")
+        else:
+            print("Not sufficient balance.")
     
     def show_balance(self):
         print(f"Your total balance is = {self.total_balance} taka")
@@ -36,7 +45,6 @@ class Account:
     def take_loan(self, amount, bank):
         pass
     
-    def delete_account(self):
+    def delete_account(self, account):
         pass
-    
     

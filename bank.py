@@ -13,7 +13,7 @@ class Bank:
         self.phone = phone
         self.password = password
         
-    def delete_account(self):
+    def delete_account(self, account):
         pass
     
     def show_users(self):
@@ -31,3 +31,5 @@ class Bank:
     def loan_off(self):
         pass
     
+    def declare_bankrupt():
+        pass

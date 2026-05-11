@@ -54,6 +54,35 @@ def logged_in_as_admin():
         print("| Press 8 for Declare Bankrupt.         |")
         print("| Press 9 for Logout.                   |")
         print("|_______________________________________|")
+        
+        choice = int(input("Enter your choice : "))
+        if choice == 1:
+            name = input("Enter name : ")
+            email = input("Enter email : ")
+            phone = input("Enter phone no : ")
+            password = input("Enter password : ")
+            bank.create_account(name, email, phone, password)
+        elif choice == 2:
+            account = int(input("Enter the account number you want to delete : "))
+            bank.delete_account(account)
+        elif choice == 3:
+            bank.show_users()
+        elif choice == 4:
+            bank.show_total_balance()
+        elif choice == 5:
+            bank.show_total_loan()
+        elif choice == 6:
+            bank.loan_on()
+        elif choice == 7:
+            bank.loan_off()
+        elif choice == 8:
+            bank.declare_bankrupt()
+        elif choice == 9:
+            print("Logging out...")
+            sleep(random.randint(2, 3))
+            break
+        else:
+            print("Invalid Choice.")
 
 while True:
     op = input("Register/Login (r/l) : ")
@@ -86,11 +115,11 @@ while True:
                 if user.password == password:
                     if user_type == 'a':
                         print("Processing...")
-                        sleep(random.randint(3, 6))
+                        sleep(random.randint(3, 5))
                         logged_in_as_admin()
                     else:
                         print("Please wait...")
-                        sleep(random.randint(3, 6))
+                        sleep(random.randint(3, 5))
                         logged_in_as_user()
                 else:
                     print("Sorry, Password didn't match. Try again.")
