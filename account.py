@@ -23,7 +23,6 @@ class Account:
     
     def deposit(self, amount, bank):
         self.total_balance += amount
-        bank = Bank("Pocket Vari")
         bank.total_balance += amount
         print(f"\nDeposit {amount} taka Successfully!!!")
         print(f"Your current balance is = {self.total_balance} taka")
@@ -32,7 +31,6 @@ class Account:
     def withdraw(self, amount, bank):
         if self.total_balance >= amount:
             self.total_balance -= amount
-            bank = Bank("Pocket Vari")
             bank.total_balance -= amount
             print(f"\nWithdraw {amount} taka Successfully!!!")
             print(f"Your current balance is = {self.total_balance} taka")
@@ -41,14 +39,39 @@ class Account:
             print("Not sufficient balance.")
     
     def show_balance(self):
-        print(f"Your total balance is = {self.total_balance} taka")
+        print(f"Your current total balance is = {self.total_balance} taka")
     
-    def show_transaction_history():
-        pass
+    def show_transaction_history(self):
+        print("\n\t -- Transaction History --")
+        if len(self.transaction_history) == 0:
+            print("No Transaction History Found")
+        else:
+            for history in self.transaction_history:
+                print(history)
         
     def take_loan(self, amount, bank):
-        pass
-    
-    def delete_account(self, account):
-        pass
+        if bank.loanFacility:
+            if bank.total_balance > amount:
+                if self.loan_count < 2:
+                    self.total_balance += amount
+                    bank.total_balance -= amount
+                    bank.total_loan += amount
+                    self.loan_count += 1
+                    print(f"Congrats! You have taken a loan of {amount} taka. Your current balance is {self.total_balance} taka.")
+                    self.transaction_history.append(f"Taken loan of {amount} taka at {datetime.now()}")
+                else:
+                    print("\nSorry. You have reached your loan taken limit. You can't take loan more than twice.")
+            else:
+                print("Sorry. The bank doesn't have enough money to provide loan.")
+        else:
+            print("Sorry. Taking loan facility is currently unavailable on our bank.")
+            
+    def profile_details(self):
+        print("\n\t -- About --\n")
+        print(f"User type: {self.user_type}")
+        print(f"Name: {self.name}")
+        print(f"Email: {self.email}")
+        print(f"Phone: {self.phone}")
+        print(f"Account number: {self.account_no}")
+        print(f"Password: {self.password}")
     
