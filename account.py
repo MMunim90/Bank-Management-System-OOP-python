@@ -8,20 +8,24 @@ class Account:
         self.phone = phone
         self.password = password
         self.user_type = user_type
-        self.account_no = self.generate_account_no()
+        self.account_no = self.generate_account_no(user_type)
         self.total_balance = 0
         self.loan_count = 0
         self.transaction_history = []
         
-    def generate_account_no(self):
-        account_no = random.randint(100000, 199999)
-        return account_no
+    def generate_account_no(self, user_type):
+        if user_type == 'user':
+            account_no = random.randint(100000, 199999)
+            return account_no
+        elif user_type == 'admin':
+            account_no = random.randint(1000, 1999)
+            return account_no
     
     def deposit(self, amount, bank):
         self.total_balance += amount
         bank = Bank("Pocket Vari")
         bank.total_balance += amount
-        print(f"Deposit {amount} taka Successfully!!!")
+        print(f"\nDeposit {amount} taka Successfully!!!")
         print(f"Your current balance is = {self.total_balance} taka")
         self.transaction_history.append(f"Deposited {amount} taka at {datetime.now()}")
     
@@ -30,7 +34,7 @@ class Account:
             self.total_balance -= amount
             bank = Bank("Pocket Vari")
             bank.total_balance -= amount
-            print(f"Withdraw {amount} taka Successfully!!!")
+            print(f"\nWithdraw {amount} taka Successfully!!!")
             print(f"Your current balance is = {self.total_balance} taka")
             self.transaction_history.append(f"Withdrawal {amount} taka at {datetime.now()}")
         else:

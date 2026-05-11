@@ -3,7 +3,7 @@ from account import Account
 from time import sleep
 import random
 
-print("\n\t-----Welcome to Pocket Vari Bank-----\n")
+print("\n\t---Welcome to Pocket Vari Bank---\n")
 bank = Bank("Pocket Vari")
 
 def logged_in_as_user():
@@ -85,7 +85,7 @@ def logged_in_as_admin():
             print("Invalid Choice.")
 
 while True:
-    op = input("Register/Login (r/l) : ")
+    op = input("Register/Login/Exit (r/l/e) : ")
     if op == 'r':
         user_type = input("User/Admin (u/a) : ")
         name = input("Enter your name : ")
@@ -125,6 +125,11 @@ while True:
                     print("Sorry, Password didn't match. Try again.")
             else:
                 print("Sorry, Name didn't match. Try again.")
+                
+    elif op == 'e':
+        print("Shutting down...")
+        sleep(random.randint(2, 3))
+        break
     
     else:
         print("Wrong Input! Try again.")
